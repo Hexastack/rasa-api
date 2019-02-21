@@ -1,0 +1,5 @@
+node_modules/
+.idea
+run.js
+npm-debug.log
+.nyc_output

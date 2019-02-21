@@ -1,0 +1,33 @@
+{
+  "name": "rasa-api",
+  "version": "0.0.1",
+  "description": "Implementation of rasa api, provides methods to easily manage your rasa app",
+  "main": "index.js",
+  "keywords": [
+    "rasa",
+    "api",
+    "nlp",
+    "rasa-api",
+    "ai",
+    "bot",
+    "chatbot",
+    "ES6"
+  ],
+  "scripts": {
+    "test": "nyc mocha --timeout 5000 --reporter nyan"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hexastack/rasa-api.git"
+  },
+  "author": "Hexastack <contact@hexastack.com>",
+  "license": "BSD-4-Clause",
+  "dependencies": {
+    "request": "^2.85.0"
+  },
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2"
+  }
+}

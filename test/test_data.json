@@ -1,0 +1,36 @@
+{
+  "common_examples": [
+    {
+      "text": "hi there",
+      "intent": "greet",
+      "entities": []
+    },
+    {
+      "text": "i'm searching for a restaurant",
+      "intent": "restaurant_search",
+      "entities": []
+    },
+    {
+      "text": "show me chinese restaurants nearby",
+      "intent": "restaurant_search",
+      "entities": [
+        {
+          "start": 8,
+          "end": 15,
+          "value": "chinese",
+          "entity": "cuisine"
+        }
+      ]
+    },
+    {
+      "text": "okay",
+      "intent": "affirm",
+      "entities": []
+    },
+    {
+      "text": "bye bye",
+      "intent": "goodbye",
+      "entities": []
+    }
+  ]
+}
