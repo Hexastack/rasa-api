@@ -1,23 +1,30 @@
-module.exports = function(request) {
-  return function (params, callback) {
-    request(params, (error, response, body) => {
-      if (error) {
-        return callback(error, null)
-      }
-      let json = {}
-      try {
-        json = JSON.parse(body)
-      } catch(e) {
-        return callback(e, null)
-      }
+import fetch from 'node-fetch';
 
-      if (response && response.statusCode != '200') {
-        const err = new Error(json.error || json.body)
-        err.code = json.code
-        return callback(err, null)
-      }
+export default function ({ baseUrl, headers, params }) {
+  return async function ({ method = 'GET', uri, body = null, qs = {} }) {
+    const url = `${baseUrl}${uri}?${new URLSearchParams({
+      ...params,
+      ...qs,
+    })}`;
+    try {
+      const response = await fetch(url, {
+        method,
+        headers,
+        body: body ? JSON.stringify(body) : null, 
+      });
+      
+      const data = await response.json();
 
-      return callback(null, json)
-    });
-  }
-}
+      if (response && response.status != '200') {
+        const err = new Error(data.error || data.body);
+        err.code = data.code;
+        throw err;
+      }
+      
+      return data;
+    } catch(error) {
+      console.error(`Rasa API : Request failed`, error)
+      throw error;
+    }
+  };
+};
