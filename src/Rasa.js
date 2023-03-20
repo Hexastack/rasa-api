@@ -1,7 +1,7 @@
-import buildApiRequest from './lib/requestAPI.js';
+const buildApiRequest = require('./lib/requestAPI.js');
 
-export default class Rasa {
-  constructor(endpoint, project, token) {
+class Rasa {
+  constructor(endpoint, project, token, timeout = 30 * 1000) {
     this.project = project || 'current';
     let conf = {
       baseUrl: endpoint,
@@ -13,6 +13,7 @@ export default class Rasa {
         project: this.project,
         token: token || '',
       },
+      timeout
     };
     this.request = buildApiRequest(conf);
     this.actions = {
@@ -87,3 +88,5 @@ export default class Rasa {
     return this.send('delete', body);
   }
 }
+
+module.exports = Rasa;

@@ -1,9 +1,8 @@
 {
   "name": "rasa-api",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Implementation of rasa api, provides methods to easily manage your rasa app",
   "main": "index.js",
-  "type": "module",
   "keywords": [
     "rasa",
     "api",
@@ -23,9 +22,7 @@
   },
   "author": "Hexastack <contact@hexastack.com>",
   "license": "BSD-4-Clause",
-  "dependencies": {
-    "node-fetch": "^3.3.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "expect.js": "^0.3.1",
     "mocha": "^10.2.0",

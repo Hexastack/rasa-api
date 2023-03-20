@@ -1,8 +1,8 @@
-import expect from 'expect.js';
-import Rasa from '../index.js';
-import trainingData from './training_data.json' assert { type: 'json' };
-import testData from './test_data.json' assert { type: 'json' };
-import nock from 'nock';
+const expect = require('expect.js');
+const Rasa = require('../index.js');
+const trainingData = require('./training_data.json');
+const testData = require('./test_data.json');
+const nock = require('nock');
 
 const endpoint = 'http://localhost:5000';
 const token = 'my123Token';
@@ -13,8 +13,8 @@ const text = "i'm looking for a place in the north of town";
 nock(endpoint)
   .post('/train')
   .query({
-    project: project,
-    token: token,
+    project,
+    token,
   })
   .reply((uri, requestBody) => {
     if ('rasa_nlu_data' in requestBody) {
@@ -67,7 +67,7 @@ nock(endpoint)
           entities: [],
           intent: {
             name: 'restaurant_search',
-            confidence: .9,
+            confidence: 0.9,
             f1_score: 0,
             accuracy: 0,
           },
@@ -101,13 +101,11 @@ describe('Rasa', function () {
       return rasa
         .train(trainingData)
         .then((res) => {
-          console.log(res, '000000');
           expect(res).to.be.an(Object);
           expect(res).to.have.property('info');
           expect(res).to.have.property('model');
         })
         .catch((e) => {
-          console.log(e, '11111');
           expect(e).to.not.be.ok();
         });
     });

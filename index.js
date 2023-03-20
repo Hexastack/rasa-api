@@ -1,3 +1,3 @@
-import Rasa from './src/Rasa.js';
+const Rasa = require('./src/Rasa.js');
 
-export default Rasa;
+module.exports = Rasa;
